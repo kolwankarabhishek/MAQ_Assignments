@@ -1,0 +1,35 @@
+SQL LAB-1
+
+Challenge 1
+Retrieve customer details
+SELECT * FROM SalesLT.Customer;
+
+Retrieve customer name data
+SELECT title,firstname,lastname,middlename,suffix FROM SalesLT.Customer;
+SELECT ISNULL(title+' ','') + firstname+' ' + ISNULL(middlename+' ','') + lastname + ISNULL(' '+suffix,'')  as fullname FROM SalesLT.Customer;
+
+Retrieve customer names and phone numbers
+SELECT SalesPerson,title+' '+lastname as CustomerName,Phone FROM SalesLT.Customer;
+
+Challenge 2
+Retrieve a list of customer companies
+SELECT CAST(CustomerID as varchar)+': '+CompanyName as customerCompany FROM SalesLT.Customer;
+
+Retrieve a list of sales order revisions
+SELECTSalesOrderNumber+' ('+CAST(RevisionNumber as varchar)+')' as salesorderrevisions FROM SalesLT.SalesOrderHeader
+
+Challenge 3
+Retrieve Customer contact names with middlename if known
+SELECT firstname+' ' + ISNULL(middlename+' ','') + lastname as fullname FROM SalesLT.Customer;
+
+Retrieve primary contact details
+(UPDATE SalesLT.Customer SET EmailAddress = NULL WHERE CustomerID % 7 = 1;)
+select CustomerID,ISNULL(EmailAddress,Phone) as primarycontact from SalesLT.Customer
+
+Retrieve shipping status
+(UPDATE SalesLT.SalesOrderHeader SET ShipDate = NULL WHERE SalesOrderID > 71899;)
+select SalesOrderID,OrderDate,ShipDate,case when ShipDate is null then 'Awaiting Shipment' else 'Shipped' end from SalesLT.SalesOrderHeader;
+
+
+
+

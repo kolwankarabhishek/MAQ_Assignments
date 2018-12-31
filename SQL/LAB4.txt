@@ -1,0 +1,31 @@
+SQL LAB-4
+
+Challenge 1
+Retrieve billing addresses
+select c.CompanyName,
+a.AddressLine1+' '+a.City as fulladdress,
+'Billing' as AddressType
+from SalesLT.Customer c,SalesLT.Address a,SalesLT.CustomerAddress ca
+where c.CustomerID=ca.CustomerID and a.AddressID=ca.AddressID and ca.AddressType='Main Office';
+
+
+retrieve shipping addresses
+select c.CompanyName,
+a.AddressLine1+' '+a.City as fulladdress,
+'Shipping' as AddressType
+from SalesLT.Customer c,SalesLT.Address a,SalesLT.CustomerAddress ca
+where c.CustomerID=ca.CustomerID and a.AddressID=ca.AddressID and ca.AddressType='Shipping';
+
+
+combine billing and shipping addresses
+select c.CompanyName,
+a.AddressLine1+' '+a.City as fulladdress,
+'Billing' as AddressType
+from SalesLT.Customer c,SalesLT.Address a,SalesLT.CustomerAddress ca
+where c.CustomerID=ca.CustomerID and a.AddressID=ca.AddressID and ca.AddressType='Main Office'
+Union
+select c.CompanyName,
+a.AddressLine1+' '+a.City as fulladdress,
+'Shipping' as AddressType
+from SalesLT.Customer c,SalesLT.Address a,SalesLT.CustomerAddress ca
+where c.CustomerID=ca.CustomerID and a.AddressID=ca.AddressID and ca.AddressType='Shipping';

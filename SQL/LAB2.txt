@@ -1,0 +1,28 @@
+SQL LAB-2
+
+Challenge 1
+Retrieve list of cities
+select Distinct City,StateProvince from SalesLT.Address
+
+Retrieve the heaviest products
+select top(10) percent Name from SalesLT.Product order by Weight desc
+
+Retrieve the heaviest 100 product not including heaviest 10
+select Name from SalesLT.Product order by Weight desc OFFSET 10 ROWS FETCH NEXT 100 ROWS ONLY;
+
+Challenge 2
+retrieve product details for product model 1
+select Name,Color,Size from SalesLT.Product where ProductModelID = 1
+
+Filterproducts by color and size
+select ProductNumber,Name from SalesLT.Product where Color in ('black','red','white') and Size in ('S','M')
+
+Filterproductsby product number
+select ProductNumber,Name,ListPrice from SalesLT.Product where productNumber like 'BK-%'
+
+Retrieve specific products by product number
+select ProductNumber,Name,ListPrice from SalesLT.Product where productNumber like 'BK-[^R]%-[0-9][0-9]'
+
+
+
+

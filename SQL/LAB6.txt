@@ -1,0 +1,32 @@
+SQL LAB-6
+
+Challenge 1
+Retrieve Products whose list price is higher than the average unit price
+select ProductID,Name,ListPrice
+from SalesLT.Product 
+where ListPrice>(select avg(UnitPrice) from SalesLT.SalesOrderDetail)
+
+Retrieve Products with a list price>100 and unitprice<100
+select ProductID,Name,ListPrice
+from SalesLT.Product
+where ListPrice>100 and 
+ProductID in (select ProductID from SalesLT.SalesOrderDetail where unitprice<100)
+
+
+Retrieve the cost, listprice and average selling price for each product
+select p.ProductID,p.Name,p.StandardCost,p.ListPrice,
+(select avg(s.UnitPrice) from SalesLT.SalesOrderDetail s where s.ProductID=p.ProductID) as averageunitprice
+ from SalesLT.Product p
+
+
+retrieve products that have an average selling price that is lower then the cost
+select p.ProductID,p.Name,p.StandardCost,p.ListPrice,
+(select avg(s.UnitPrice) from SalesLT.SalesOrderDetail s where s.ProductID=p.ProductID) as averageunitprice
+from SalesLT.Product p
+where p.StandardCost>(select avg(s.UnitPrice) from SalesLT.SalesOrderDetail s where s.ProductID=p.ProductID)
+
+
+
+
+
+

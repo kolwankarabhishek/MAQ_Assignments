@@ -1,0 +1,18 @@
+SQL LAB-3
+
+Challenge 1
+Retrieve Customer Orders
+select c.CompanyName,s.SalesOrderID,s.TotalDue from SalesLT.Customer c,SalesLT.SalesOrderHeader s where s.CustomerID=c.CustomerID
+
+
+
+retrieve customer orders with addresses
+select c.CompanyName,s.SalesOrderID,s.TotalDue,
+a.AddressLine1+' '+a.AddressLine2+' '+a.City+' '+a.StateProvince+' '+a.PostalCode+' '+a.CountryRegion as fulladdress,ca.AddressType
+from SalesLT.Customer c,SalesLT.SalesOrderHeader s,SalesLT.Address a,SalesLT.CustomerAddress ca
+where s.CustomerID=ca.CustomerID and c.CustomerID=ca.CustomerID and a.AddressID=ca.AddressID and ca.AddressType='Main Office'
+
+
+
+
+

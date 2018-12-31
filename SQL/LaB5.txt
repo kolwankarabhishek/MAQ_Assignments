@@ -1,0 +1,27 @@
+SQL LAB-5
+
+Challenge 1
+Retrieve the name and approx weight of each product
+select ProductID,Upper(Name),Round(Weight,0) as ApproxWeight
+from SalesLT.product
+
+
+
+retrieve the year and month in which products where first sold
+select ProductID,Upper(Name),Round(Weight,0) as ApproxWeight,
+year(SellStartDate) as SellStartYear,month(SellStartDate) as SellStartMonth
+from SalesLT.product
+
+
+
+extract product types from product numbers
+select ProductID,Upper(Name),Round(Weight,0) as ApproxWeight,
+year(SellStartDate) as SellStartYear,month(SellStartDate) as SellStartMonth,
+substring(ProductNumber,1,2) as ProductType from SalesLT.product
+
+
+
+retrieve only products with a numeric size
+select ProductID,Upper(Name),Round(Weight,0) as ApproxWeight,
+year(SellStartDate) as SellStartYear,month(SellStartDate) as SellStartMonth,
+substring(ProductNumber,1,2) as ProductType from SalesLT.product where ISNUMERIC(size) = 1
