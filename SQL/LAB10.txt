@@ -1,0 +1,17 @@
+SQL LAB-10
+
+alter Procedure pushSOH
+    @DueDate        NVARCHAR(50),
+    @CustomerID     Integer = NULL,
+    @OrderDate      NVARCHAR(50)
+AS
+BEGIN
+insert into SalesLT.SalesOrderHeader (SalesOrderID,OrderDate,DueDate,CustomerID,ShipMethod)
+values (NEXT VALUE FOR SalesLT.SalesOrderNumber,@OrderDate,@DueDate,@CustomerID,'CARGO TRANSPORT 5');
+Print @DueDate;
+print @CustomerID;
+print @OrderDate;
+END
+
+
+exec pushSOH @DueDate='2019-12-5',@CustomerID=1,@OrderDate='2019-1-3';

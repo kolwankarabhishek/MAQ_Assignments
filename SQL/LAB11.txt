@@ -1,0 +1,23 @@
+SQL LAB-11
+
+error throwing
+DECLARE @SalesOrderID int = 3;
+DECLARE @c int;
+select @c=count(*) from SalesLT.SalesOrderDetail where SalesOrderID = @SalesOrderID;
+IF @c=0 THROW 51000, 'The record does not exist.', 1;  
+ELSE DELETE FROM SalesLT.SalesOrderDetail WHERE SalesOrderID = @SalesOrderID;
+
+try catch and transaction
+BEGIN TRANSACTION;  
+DECLARE @SalesOrderID int = 3;
+DECLARE @c int;
+BEGIN TRY  
+    select @c=count(*) from SalesLT.SalesOrderDetail where SalesOrderID = @SalesOrderID;
+    IF @c=0 THROW 51000, 'The record does not exist.', 1;  
+    ELSE DELETE FROM SalesLT.SalesOrderDetail WHERE SalesOrderID = @SalesOrderID;
+    COMMIT TRANSACTION;  
+END TRY  
+BEGIN CATCH 
+select 'no record with this id'
+ROLLBACK TRANSACTION;  
+END CATCH;  

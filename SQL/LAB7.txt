@@ -1,0 +1,26 @@
+SQL LAB-6
+
+Challenge 1
+Retrieve product model descriptions
+SELECT p.ProductID, p.Name as pname, pm.Name AS mname, v.summary
+FROM SalesLT.Product p, SalesLT.ProductModel pm,SalesLT.vProductModelCatalogDescription v
+where p.ProductModelID = pm.ProductModelID
+and  pm.ProductModelID  = v.ProductModelID;
+
+Create a table of distinct colors
+DECLARE @Colors AS TABLE (Color varchar(15))
+INSERT INTO @Colors SELECT DISTINCT Color FROM SalesLT.Product;
+SELECT ProductID, Name, Color FROM SalesLT.Product WHERE Color IN (SELECT Color FROM @Colors);
+
+
+retrieve product parent categories
+SELECT ParentProductCategoryName,ProductCategoryName, p.Name
+FROM SalesLT.Product p,dbo.ufnGetAllCategories() f
+where p.ProductCategoryID = f.ProductCategoryID
+
+
+
+
+
+
+
