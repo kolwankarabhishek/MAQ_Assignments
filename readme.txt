@@ -1,3 +1,4 @@
-are we supposed to include all screenshots of each quiz answer?
-
-course sql completed: 18/21 (finaltest) 30/33 (module quizes)
+Data Science Essentials completed
+Transact SQL completed
+Analyzing and Visualizing with Excel Completed
+Essential Statistics for Data Analysis using Excel ongoing
